@@ -1,0 +1,59 @@
+/* ==UserStyle==
+@name           YTM - Fix theme Tech-How + BetterYTM
+@version        1.0.2
+@author         boredwz (https://github.com/boredwz)
+@namespace      boredwz
+@homepageURL    https://github.com/boredwz/browser_userscripts
+@updateURL      https://raw.githubusercontent.com/boredwz/browser_userscripts/master/css/ytm-fix-compability-technow-bytm.user.css
+@description    Improve compatibility of the light theme (Tech-How) with the BetterYTM script.
+==/UserStyle== */
+
+@-moz-document domain("music.youtube.com") {
+    
+    :root {
+        --bytm-themed-bg: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        /* YTM logo fix (BYTM) */
+        svg > .bytm-mod-logo-path {
+            fill: #fff;
+        }
+        svg > .bytm-mod-logo-ellipse:nth-child(2) {
+            stroke: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+
+        /* Remove custom YTM logo (by Tech-How) */
+        ytmusic-nav-bar .left-content [aria-label=Home],
+        ytmusic-app[is-bauhaus-sidenav-enabled] ytmusic-guide-renderer [aria-label=Home] {
+            background: none !important;
+            margin-top: 0 !important;
+            border-radius: 0 !important;
+            width: auto !important;
+            height: auto !important;
+            background-repeat: initial !important;
+            margin-left: 0 !important;
+        }
+
+        /* YTM logo fix (BYTM) */
+        svg > .bytm-mod-logo-path {
+            fill: #000;
+        }
+        svg > .bytm-mod-logo-ellipse:nth-child(2) {
+            stroke: #000;
+        }
+
+        /* Player queue fix (BYTM) */
+        .bytm-generic-btn-img {
+            filter: invert(100%);
+        }
+        :root #side-panel ytmusic-player-queue-item[play-button-state="loading"],
+        :root #side-panel ytmusic-player-queue-item[play-button-state="playing"],
+        :root #side-panel ytmusic-player-queue-item[play-button-state="paused"] {
+            background: #e0e0e0 !important;
+        }
+    }
+}
