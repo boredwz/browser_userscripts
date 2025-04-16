@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SS64.com/pass Auto-filler
-// @version      1.0.2
+// @version      1.0.3
 // @author       boredwz
 // @namespace    boredwz
 // @homepageURL  https://github.com/boredwz/browser_userscripts
@@ -8,12 +8,28 @@
 // @match        https://ss64.com/pass/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=passwords.google
 // @description  Automatically fill an input field by simulating keystrokes.
+// @grant        GM_getValue
+// @grant        GM_setValue
 // ==/UserScript==
 
-(function() {
-    const YOURTEXT = ''
+(async () => {
+    const ENV_NAME = "passcode";
+    const ENV_VALUE = "ENTER YOUR PASSCODE";
+    const PASSCODE = (() => {
+        if (GM_getValue(ENV_NAME) === undefined) {GM_setValue(ENV_NAME, ENV_VALUE);}
+        return GM_getValue(ENV_NAME);
+    })();
 
-    'use strict';
+    window.addEventListener('load', function() {main('Page loaded')});
+
+    function currentTime() {return new Date().toLocaleTimeString('eo', { hour12: false });}
+
+    function main(text) {
+        let inputElement = document.getElementById('maintext');
+        let message = inputElement ? 'Text has been entered successfully' : 'Input element not found';
+        if (inputElement) {simulateTyping(inputElement, PASSCODE);}
+        console.log(`[${currentTime()}]\n(${text}) ${message}`);
+    }
 
     // Function to simulate typing into an input field
     function simulateTyping(element, text) {
@@ -64,15 +80,4 @@
         });
         element.dispatchEvent(changeEvent);
     }
-
-    function currentTime() {return new Date().toLocaleTimeString('eo', { hour12: false });}
-
-    function main(text) {
-        const inputElement = document.getElementById('maintext');
-        let message = inputElement ? 'Text has been entered successfully' : 'Input element not found';
-        if (inputElement) {simulateTyping(inputElement, YOURTEXT);}
-        console.log(`[${currentTime()}]\n(${text}) ${message}`);
-    }
-
-    window.addEventListener('load', function() {main('Page loaded')});
 })();
