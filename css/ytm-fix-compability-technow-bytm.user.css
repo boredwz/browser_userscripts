@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name           YTM - Fix theme Tech-How + BetterYTM
-@version        1.0.2
+@version        1.0.3
 @author         boredwz (https://github.com/boredwz)
 @namespace      boredwz
 @homepageURL    https://github.com/boredwz/browser_userscripts
@@ -39,11 +39,8 @@
         }
 
         /* YTM logo fix (BYTM) */
-        svg > .bytm-mod-logo-path {
+        .bytm-no-select > svg > g > g {
             fill: #000;
-        }
-        svg > .bytm-mod-logo-ellipse:nth-child(2) {
-            stroke: #000;
         }
 
         /* Player queue fix (BYTM) */
