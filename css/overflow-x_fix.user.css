@@ -1,0 +1,13 @@
+/* ==UserStyle==
+@name           overflow-x fix (hide horizontal scroll bar)
+@version        1.0.0
+@author         boredwz (https://github.com/boredwz)
+@namespace      boredwz
+@homepageURL    https://github.com/boredwz/browser_userscripts
+@updateURL      https://raw.githubusercontent.com/boredwz/browser_userscripts/master/css/overflow-x_fix.user.css
+@description    Fix annoying horizontal scroll bar on various websites.
+==/UserStyle== */
+
+@-moz-document domain("google.com") { html {overflow-x: hidden !important;} }
+
+@-moz-document domain("youtube.com") { ytd-app {overflow-x: hidden !important;} }
